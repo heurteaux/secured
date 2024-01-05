@@ -1,0 +1,4 @@
+*.a
+*.o
+../includes/my.h
+../includes/mylist.h
