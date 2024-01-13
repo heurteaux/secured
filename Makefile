@@ -12,11 +12,10 @@ CFLAGS	=	-Wall -Wextra -Werror \
 
 SRC_DIRS	=	./src
 
-CSFML_FLAGS	=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
-
 LIB_FLAGS	=	-L./lib/my -lmy -L./lib/mlist -lmlist -lm
 
 SRCS := $(wildcard $(shell find $(SRC_DIRS) -name '*.c'))
+
 all:
 	mkdir -p includes
 	$(MAKE) -C ./lib/my -f Makefile
