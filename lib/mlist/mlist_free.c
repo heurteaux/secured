@@ -6,7 +6,8 @@
 */
 
 #include <stdlib.h>
-#include "mlist.h"
+#include "../../includes/hashtable.h"
+#include <stdio.h>
 
 void mfree(mlist *list)
 {
@@ -15,6 +16,10 @@ void mfree(mlist *list)
 
     while (tmp != NULL) {
         next = tmp->next;
+        if (tmp->data) {
+            free(((entry_t *)tmp->data)->key);
+            free(tmp->data);
+        }
         free(tmp);
         tmp = next;
     }

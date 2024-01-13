@@ -12,7 +12,7 @@
 mlist *mget(mlist const *head, int index)
 {
     int i = 0;
-    mlist *tmp = malloc(sizeof(mlist));
+    mlist *tmp;
 
     if (head->is_head == 0) {
         write(2, "Error: mget: head is not a head\n", 33);

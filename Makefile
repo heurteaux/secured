@@ -7,11 +7,12 @@
 
 NAME	=	libhashtable.a
 
-CFLAGS	=	-Wall -Wextra -Werror \
+CFLAGS	=	-Wall -Wextra -Werror -g3 \
 
 SRCS    :=      $(shell find $(SRC_DIRS) -name "*.c" \
                         -not -name "main.c"     \
                 )
+
 OBJS	=	$(SRCS:.c=.o)
 
 all:	$(NAME)

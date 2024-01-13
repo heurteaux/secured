@@ -6,6 +6,7 @@
 */
 
 #include "../includes/hashtable.h"
+#include <stdlib.h>
 
 int main(void)
 {
@@ -16,5 +17,6 @@ int main(void)
     ht_insert(ht, "<3", "+33 6 31 45 61 23 71");
     ht_insert(ht, "</3", "+33 7 51 49 01 38 11");
     ht_dump(ht);
+    delete_hashtable(ht);
     return 0;
 }

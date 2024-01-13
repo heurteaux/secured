@@ -5,7 +5,6 @@
 ** delete_hashtable.c
 */
 
-#include "../../includes/mlist.h"
 #include "../../includes/hashtable.h"
 #include <stdlib.h>
 
