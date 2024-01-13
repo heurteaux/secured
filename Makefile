@@ -7,7 +7,7 @@
 
 NAME	=	libhashtable.a
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 \
+CFLAGS	=	-Wall -Wextra -Werror \
 
 SRCS    :=      $(shell find $(SRC_DIRS) -name "*.c" \
                         -not -name "main.c"     \
@@ -16,9 +16,6 @@ SRCS    :=      $(shell find $(SRC_DIRS) -name "*.c" \
 OBJS	=	$(SRCS:.c=.o)
 
 all:	$(NAME)
-	mkdir -p includes
-	$(MAKE) -C ./lib/my -f Makefile
-	$(MAKE) -C ./lib/mlist -f Makefile
 
 $(NAME):	$(OBJS)
 	ar rc $(NAME) $(OBJS)
