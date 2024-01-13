@@ -12,7 +12,7 @@
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    int index = hash(key, ht->size);
+    int index = hash(key, ht->size) % ht->size;
     entry_t *entry;
 
     for (int i = 0; i < mlen(ht->table[index]); i++) {
