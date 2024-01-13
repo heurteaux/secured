@@ -28,7 +28,7 @@ char *number_to_string(int nb)
 
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
-    int index = hash(key, ht->size);
+    int index = hash(key, ht->size) % ht->size;
     entry_t *entry = malloc(sizeof(entry_t));
     int (*hash)(char *, int) = ht->hash;
 

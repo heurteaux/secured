@@ -6,7 +6,6 @@
 */
 
 #include "mlist.h"
-#include "my.h"
 #include "hashtable.h"
 #include <stdlib.h>
 

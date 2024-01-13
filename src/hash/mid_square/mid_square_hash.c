@@ -5,8 +5,6 @@
 ** mid_square_hash.c
 */
 
-#include <stdio.h>
-
 static long long int power(int number, int power)
 {
     long long int result = 1;
