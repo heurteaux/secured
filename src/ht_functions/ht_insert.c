@@ -5,12 +5,10 @@
 ** ht_insert.c
 */
 
-#include "mlist.h"
-#include "my.h"
-#include "hashtable.h"
+#include "../../includes/mlist.h"
+#include "../../includes/my.h"
+#include "../../includes/hashtable.h"
 #include <stdlib.h>
-
-//int to char *
 
 char *number_to_string(int nb)
 {

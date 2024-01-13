@@ -5,22 +5,22 @@
 ## libmy
 ##
 
-NAME	=	secured
+NAME	=	libhashtable.a
 
 CFLAGS	=	-Wall -Wextra -Werror \
-	-Wno-unused-variable -Wno-unused-parameter -Wno-unused-but-set-variable
 
-SRC_DIRS	=	./src
+SRCS    :=      $(shell find $(SRC_DIRS) -name "*.c" \
+                        -not -name "main.c"     \
+                )
+OBJS	=	$(SRCS:.c=.o)
 
-LIB_FLAGS	=	-L./lib/my -lmy -L./lib/mlist -lmlist -lm
-
-SRCS := $(wildcard $(shell find $(SRC_DIRS) -name '*.c'))
-
-all:
+all:	$(NAME)
 	mkdir -p includes
 	$(MAKE) -C ./lib/my -f Makefile
 	$(MAKE) -C ./lib/mlist -f Makefile
-	$(CC) $(CFLAGS) -o $(NAME) $(SRCS) -g3 -I./includes $(LIB_FLAGS)
+
+$(NAME):	$(OBJS)
+	ar rc $(NAME) $(OBJS)
 
 clean:
 		$(MAKE) -C ./lib/my -f Makefile clean

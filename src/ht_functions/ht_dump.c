@@ -4,10 +4,9 @@
 ** File description:
 ** ht_dump.c
 */
-#include <stdlib.h>
-#include "hashtable.h"
-#include "mlist.h"
-#include "my.h"
+
+#include "../../includes/hashtable.h"
+#include "../../includes/my.h"
 
 void ht_dump(hashtable_t *ht)
 {

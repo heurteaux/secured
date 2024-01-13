@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "my.h"
 
-int my_showstr(char const *str)
+/*int my_showstr(char const *str)
 {
     if (str == NULL)
         return 0;
@@ -22,4 +22,4 @@ int my_showstr(char const *str)
         str++;
     }
     return 0;
-}
+}*/

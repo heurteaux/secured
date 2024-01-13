@@ -5,11 +5,7 @@
 ** main.c
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "hashtable.h"
-#include "mlist.h"
-#include "my.h"
+#include "../includes/hashtable.h"
 
 int main(void)
 {

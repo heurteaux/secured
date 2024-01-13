@@ -5,8 +5,8 @@
 ** new_hashtable.c
 */
 
-#include "mlist.h"
-#include "hashtable.h"
+#include "../../includes/mlist.h"
+#include "../../includes/hashtable.h"
 #include <stdlib.h>
 
 hashtable_t *new_hashtable(int (*hash)(char *, int), int len)

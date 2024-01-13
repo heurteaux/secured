@@ -5,9 +5,9 @@
 ** ht_search.c
 */
 
-#include "mlist.h"
-#include "my.h"
-#include "hashtable.h"
+#include "../../includes/mlist.h"
+#include "../../includes/my.h"
+#include "../../includes/hashtable.h"
 #include <stdlib.h>
 
 char *ht_search(hashtable_t *ht, char *key)

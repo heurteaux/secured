@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "mlist.h"
 
-void mclear(mlist const *head)
+int mclear(mlist const *head)
 {
     int l = 0;
 
@@ -19,7 +19,7 @@ void mclear(mlist const *head)
         return -1;
     }
     while (l < mlen(head)) {
-        mdel(head, l);
+        mdel((mlist *)head, l);
         l++;
     }
     return l;

@@ -26,5 +26,5 @@ void mfree(mlist *head);
 void madd(mlist *head, void *elem);
 void mdel(mlist *head, int index);
 void mswap(mlist *head, int index1, int index2);
-void mclear(mlist const *head);
+int mclear(mlist const *head);
 void mrev(mlist *head);

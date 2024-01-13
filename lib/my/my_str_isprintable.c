@@ -5,9 +5,8 @@
 ** gerg
 */
 
-#include "my.h"
-
-int my_str_isprintable(char const *str)
+//pourquoi ?
+int my_str_isprintable(__attribute__((unused))char const *str)
 {
     return 0;
 }
