@@ -63,6 +63,8 @@ int hash(char *key, int len)
 {
     unsigned long long int seed = key_to_seed(key, len);
 
+    if (len <= 0 || key[0] == '\0')
+        return -1;
     seed *= seed % ULLONG_MAX;
     return get_mid_digits(seed);
 }
