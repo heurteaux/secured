@@ -30,6 +30,8 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     entry_t *entry = malloc(sizeof(entry_t));
     int (*hash)(char *, int) = ht->hash;
 
+    if (index == -1)
+        return -1;
     entry->key = number_to_string(hash(key, ht->size));
     entry->value = value;
     madd(ht->table[index], entry);

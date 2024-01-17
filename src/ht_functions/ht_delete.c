@@ -46,6 +46,8 @@ int ht_delete(hashtable_t *ht, char *key)
     int key_hash = ht->hash(key, ht->size);
     char *key_str = my_itoa(key_hash);
 
+    if (index == -1)
+        return -1;
     for (int i = 0; i < mlen(ht->table[index]); i++) {
         entry = mgetd(ht->table[index], i);
         if (my_strcmp(entry->key, key_str) == 0) {

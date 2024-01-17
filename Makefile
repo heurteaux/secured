@@ -7,11 +7,11 @@
 
 NAME	=	libhashtable.a
 
-CFLAGS	=	-Wall -Wextra \
+CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS    :=      $(shell find $(SRC_DIRS) -name "*.c" \
                         -not -name "main.c"     \
-                )
+                        )
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -21,12 +21,16 @@ $(NAME):	$(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 clean:
-		$(MAKE) -C ./lib/my -f Makefile clean
-		$(MAKE) -C ./lib/mlist -f Makefile clean
+	$(MAKE) -C ./lib/my -f Makefile clean
+	$(MAKE) -C ./lib/mlist -f Makefile clean
 
 fclean:
-		$(MAKE) -C ./lib/my -f Makefile fclean
-		$(MAKE) -C ./lib/mlist -f Makefile fclean
-		rm -f $(NAME)
+	$(MAKE) -C ./lib/my -f Makefile fclean
+	$(MAKE) -C ./lib/mlist -f Makefile fclean
+	rm -f $(NAME)
 
 re: fclean all
+
+tests_run: all
+	$(CC) -o unit_tests ./tests/*.c $(NAME) -lcriterion --coverage
+	./unit_tests
