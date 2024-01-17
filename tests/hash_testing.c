@@ -52,37 +52,6 @@ Test(Hash_Test, same_input)
     cr_assert_eq(hash1, hash2);
 }
 
-/*char *switch_one_letter(int index, const char *str)
-{
-    char *result = malloc(sizeof(char) * 7);
-
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (i == index)
-            result[i] = 'z';
-        result[i] = str[i];
-    }
-    return result;
-}*/
-/*
-
-Test(Hash_Test, all_data_is_used)
-{
-    char *input = "voiture";
-    char *temp;
-    const int input_len = 7;
-    int *hash_list = malloc(sizeof(int) * 8);
-
-    for (int i = 0; i < input_len; i++) {
-        temp = switch_one_letter(i, input);
-        printf("DEBUG TEST :%s\n", temp);
-        hash_list[i] = hash(temp, 10);
-        free(temp);
-    }
-    hash_list[7] = -1;
-    free(hash_list);
-}
-*/
-
 Test(Hash_Test, small_key_diff)
 {
     int hash1 = hash("a", 4);
