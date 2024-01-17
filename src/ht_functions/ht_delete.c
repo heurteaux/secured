@@ -41,7 +41,7 @@ char *my_itoa(int nb)
 
 int ht_delete(hashtable_t *ht, char *key)
 {
-    int index = hash(key, ht->size) % ht->size;
+    int index = ht->hash(key, ht->size) % ht->size;
     entry_t *entry;
     int key_hash = ht->hash(key, ht->size);
     char *key_str = my_itoa(key_hash);

@@ -12,7 +12,7 @@
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    int index = hash(key, ht->size) % ht->size;
+    int index = ht->hash(key, ht->size) % ht->size;
     entry_t *entry;
 
     if (index == -1)
