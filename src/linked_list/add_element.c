@@ -8,6 +8,7 @@
 #include "add_element.h"
 #include "linked_list.h"
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 void list_append(list_node *head, list_node *new_entry)

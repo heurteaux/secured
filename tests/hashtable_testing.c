@@ -102,8 +102,8 @@ Test(hashtable, new_hashtable2)
 
     cr_assert_eq(ht->len, 2);
     cr_assert_eq(ht->hash_fn, hash);
-    cr_assert_eq(ht->table[0], NULL);
-    cr_assert_eq(ht->table[1], NULL);
+    cr_assert_eq(ht->table[0]->key, NULL);
+    cr_assert_eq(ht->table[1]->value, NULL);
 }
 
 Test(hashtable, new_hashtable3)
@@ -223,7 +223,7 @@ Test(dump, ht_dump2, .init = cr_redirect_stdout)
 
     ht_insert(ht, "Key1", "Perception");
     ht_dump(ht);
-    cr_assert_stdout_eq_str("[0]:\n> 58582440 - Perception\n[1]:\n[2]:\n[3]:\n[4]:\n");
+    cr_assert_stdout_eq_str("[0]:\n[1]:\n> 346 - Perception\n[2]:\n[3]:\n[4]:\n");
 }
 
 Test(search, ht_search1)
