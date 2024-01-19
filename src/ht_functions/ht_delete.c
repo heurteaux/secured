@@ -5,55 +5,50 @@
 ** ht_delete.c
 */
 
-#include "../../includes/mlist.h"
+#include "../linked_list/linked_list.h"
 #include "../../includes/my.h"
 #include "../../includes/hashtable.h"
 #include <stdlib.h>
+#include <unistd.h>
 
-
-void my_local_swap(char *a, char *b)
+static void delete_head(hashtable_t *ht, int index, list_node *temp)
 {
-    char tmp = *a;
-
-    *a = *b;
-    *b = tmp;
+    if (!ht->table[index]->next) {
+        ht->table[index]->hash_id = -1;
+        ht->table[index]->value = NULL;
+        ht->table[index]->next = NULL;
+        return;
+    }
+    ht->table[index] = temp->next;
 }
 
-char *my_itoa(int nb)
+static void delete_element(list_node *temp)
 {
-    int i = 0;
-    int len = 0;
-    char *str = malloc(sizeof(char) * 100);
+    list_node *to_delete = temp->next;
 
-    if (nb == 0)
-        return "0";
-    while (nb != 0) {
-        str[i] = (nb % 10) + '0';
-        nb /= 10;
-        i++;
-    }
-    str[i] = '\0';
-    len = my_strlen(str);
-    for (int i = 0; i < len / 2; i++)
-        my_local_swap(&str[i], &str[len - i - 1]);
-    return str;
+    temp->next = temp->next->next;
+    free(to_delete);
 }
 
 int ht_delete(hashtable_t *ht, char *key)
 {
-    int index = ht->hash(key, ht->size) % ht->size;
-    entry_t *entry;
-    int key_hash = ht->hash(key, ht->size);
-    char *key_str = my_itoa(key_hash);
+    int key_hash = ht->hash_fn(key, ht->len);
+    int index = key_hash % ht->len;
+    list_node *temp;
 
-    if (index == -1)
+    if (key_hash == -1)
         return -1;
-    for (int i = 0; i < mlen(ht->table[index]); i++) {
-        entry = mgetd(ht->table[index], i);
-        if (my_strcmp(entry->key, key_str) == 0) {
-            mdel(ht->table[index], i);
-            return 1;
-        }
+    temp = ht->table[index];
+    if (temp->hash_id == key_hash) {
+        delete_head(ht, index, temp);
+        return 0;
     }
-    return 0;
+    while (temp->next != NULL) {
+        if (temp->next->hash_id == key_hash) {
+            delete_element(temp);
+            return 0;
+        }
+        temp = temp->next;
+    }
+    return -1;
 }

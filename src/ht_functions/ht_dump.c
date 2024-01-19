@@ -7,18 +7,25 @@
 
 #include "../../includes/hashtable.h"
 #include "../../includes/my.h"
+#include <unistd.h>
+#include <stdio.h>
+
+static void display_table_index(list_node *temp)
+{
+    while (temp != NULL) {
+        if (temp->hash_id != -1)
+            mprintf("> %d - %s\n", temp->hash_id, temp->value);
+        temp = temp->next;
+    }
+}
 
 void ht_dump(hashtable_t *ht)
 {
-    char *key;
-    char *value;
+    list_node *temp;
 
-    for (int i = 0; i < ht->size; i++) {
+    for (int i = 0; i < ht->len; i++) {
         mprintf("[%i]:\n", i);
-        for (int j = 0; j < mlen(ht->table[i]); j++) {
-            key = (char *) (((entry_t *) (mgetd(ht->table[i], j)))->key);
-            value = (char *) (((entry_t *) (mgetd(ht->table[i], j)))->value);
-            mprintf("> %s - %s\n", key, value);
-        }
+        temp = ht->table[i];
+        display_table_index(temp);
     }
 }

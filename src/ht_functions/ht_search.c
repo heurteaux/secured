@@ -5,22 +5,22 @@
 ** ht_search.c
 */
 
-#include "../../includes/mlist.h"
 #include "../../includes/my.h"
 #include "../../includes/hashtable.h"
 #include <stdlib.h>
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    int index = ht->hash(key, ht->size) % ht->size;
-    entry_t *entry;
+    int hash_key = ht->hash_fn(key, ht->len);
+    int index = hash_key % ht->len;
+    list_node *temp = ht->table[index];
 
     if (index == -1)
         return NULL;
-    for (int i = 0; i < mlen(ht->table[index]); i++) {
-        entry = mgetd(ht->table[index], i);
-        if (my_strcmp(entry->key, key) == 0)
-            return entry->value;
+    while (temp != NULL) {
+        if (temp->hash_id != -1 && temp->hash_id == hash_key)
+            return temp->value;
+        temp = temp->next;
     }
     return NULL;
 }

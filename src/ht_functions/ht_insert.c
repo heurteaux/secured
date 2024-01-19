@@ -5,37 +5,23 @@
 ** ht_insert.c
 */
 
-#include "../../includes/mlist.h"
+#include "../linked_list/add_element.h"
 #include "../../includes/my.h"
 #include "../../includes/hashtable.h"
 #include <stdlib.h>
 
-char *number_to_string(int nb)
-{
-    char *str = malloc(sizeof(char) * 10);
-    int i = 0;
-
-    while (nb > 0) {
-        str[i] = nb % 10 + '0';
-        nb = nb / 10;
-        i++;
-    }
-    str[i] = '\0';
-    return my_revstr(str);
-}
-
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
-    int index = hash(key, ht->size) % ht->size;
-    entry_t *entry = malloc(sizeof(entry_t));
-    int (*hash)(char *, int) = ht->hash;
+    int index = ht->hash_fn(key, ht->len) % ht->len;
+    list_node *new_entry = malloc(sizeof(list_node));
 
-    if (index == -1 || entry == NULL || ht == NULL || key == NULL)
+    if (index == -1 || new_entry == NULL)
         return 84;
     if (my_strlen(key) == 0)
         return 84;
-    entry->key = number_to_string(hash(key, ht->size));
-    entry->value = value;
-    madd(ht->table[index], entry);
+    new_entry->value = value;
+    new_entry->hash_id = ht->hash_fn(key, ht->len);
+    new_entry->next = NULL;
+    list_append(ht->table[index], new_entry);
     return 0;
 }
