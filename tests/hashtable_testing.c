@@ -63,3 +63,18 @@ Test(HashTableTest, empty_table)
     char *expected = "[0]:\n";
     cr_assert_stdout_eq_str(expected);
 }
+
+/*
+Test(HashTableTest, double_insert)
+{
+    hashtable_t *ht = new_hashtable(&test_hash, 10);
+    char *search_result;
+    int insert1;
+    int insert2;
+
+    insert1 = ht_insert(ht, "test_key", "sample_value");
+    insert2 = ht_insert(ht, "test_key", "sample_value");
+    search_result = ht_search(ht, "test_key");
+    cr_assert_eq
+}
+*/

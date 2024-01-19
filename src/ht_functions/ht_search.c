@@ -18,7 +18,7 @@ char *ht_search(hashtable_t *ht, char *key)
     if (index == -1)
         return NULL;
     while (temp != NULL) {
-        if (temp->hash_id != -1 && temp->hash_id == hash_key)
+        if (temp->key && my_strcmp(key, temp->key) == 0)
             return temp->value;
         temp = temp->next;
     }

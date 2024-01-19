@@ -13,7 +13,7 @@
 static void display_table_index(list_node *temp)
 {
     while (temp != NULL) {
-        if (temp->hash_id != -1)
+        if (temp->key)
             mprintf("> %d - %s\n", temp->hash_id, temp->value);
         temp = temp->next;
     }

@@ -21,6 +21,7 @@ hashtable_t *new_hashtable(int (*hash)(char *, int), int len)
     for (int i = 0; i < len; i++) {
         ht->table[i] = malloc(sizeof(list_node));
         ht->table[i]->hash_id = -1;
+        ht->table[i]->key = NULL;
         ht->table[i]->next = NULL;
         ht->table[i]->value = NULL;
     }

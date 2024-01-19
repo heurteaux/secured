@@ -12,7 +12,8 @@
 
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
-    int index = ht->hash_fn(key, ht->len) % ht->len;
+    int hash_key = ht->hash_fn(key, ht->len);
+    int index = hash_key % ht->len;
     list_node *new_entry = malloc(sizeof(list_node));
 
     if (index == -1 || new_entry == NULL)
@@ -20,7 +21,8 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     if (my_strlen(key) == 0)
         return 84;
     new_entry->value = value;
-    new_entry->hash_id = ht->hash_fn(key, ht->len);
+    new_entry->hash_id = hash_key;
+    new_entry->key = key;
     new_entry->next = NULL;
     list_append(ht->table[index], new_entry);
     return 0;

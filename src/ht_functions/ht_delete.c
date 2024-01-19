@@ -5,11 +5,11 @@
 ** ht_delete.c
 */
 
-#include "../linked_list/linked_list.h"
-#include "../../includes/my.h"
-#include "../../includes/hashtable.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include "../../includes/hashtable.h"
+#include "../../includes/my.h"
+#include "../linked_list/linked_list.h"
 
 static void delete_head(hashtable_t *ht, int index, list_node *temp)
 {
@@ -39,12 +39,12 @@ int ht_delete(hashtable_t *ht, char *key)
     if (key_hash == -1)
         return -1;
     temp = ht->table[index];
-    if (temp->hash_id == key_hash) {
+    if (temp->key && my_strcmp(temp->key, key) == 0) {
         delete_head(ht, index, temp);
         return 0;
     }
     while (temp->next != NULL) {
-        if (temp->next->hash_id == key_hash) {
+        if (temp->next->key && my_strcmp(temp->next->key, key) == 0) {
             delete_element(temp);
             return 0;
         }
