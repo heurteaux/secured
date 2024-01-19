@@ -22,6 +22,11 @@ static int linked_list_append(list_node *temp, list_node *new_entry)
         }
         temp = temp->next;
     }
+    if (temp->key && my_strcmp(temp->key, new_entry->key) == 0) {
+        temp->value = new_entry->value;
+        free(new_entry);
+        return 84;
+    }
     temp->next = new_entry;
     return 0;
 }
