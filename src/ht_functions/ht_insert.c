@@ -19,7 +19,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
 
     if (!ht || !key || !value)
         return 84;
-    if (my_strlen(key) == 0)
+    if (my_strlen(key) == 0 || my_strlen(value) == 0)
         return 84;
     hash_key = ht->hash_fn(key, ht->len);
     index = hash_key % ht->len;

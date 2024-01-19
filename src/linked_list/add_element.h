@@ -8,4 +8,4 @@
 #pragma once
 #include "linked_list.h"
 
-void list_append(list_node *head, list_node *new_entry);
+int list_append(list_node *head, list_node *new_entry);

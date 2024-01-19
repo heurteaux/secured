@@ -14,7 +14,7 @@ static void display_table_index(list_node *temp, hashtable_t *ht)
 {
     while (temp != NULL) {
         if (temp->key) {
-            printf(
+            mprintf(
                 "> %d - %s\n", ht->hash_fn(temp->key, ht->len), temp->value);
         }
         temp = temp->next;

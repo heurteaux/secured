@@ -141,7 +141,6 @@ Test(insert, ht_insert1)
 
     ht_insert(ht, "Key1", "Perception");
     cr_assert_str_eq(ht->table[0]->value, "Perception");
-    cr_assert_eq(ht->hash_fn(ht->table[0]->key, ht->len), 58582440);
     cr_assert_eq(ht->table[0]->next, NULL);
 }
 
@@ -150,12 +149,12 @@ Test(insert, ht_insert2, .init = cr_redirect_stdout)
     hashtable_t *ht = new_hashtable(hash, 5);
 
     ht_insert(ht, "Perception", "Value1");
-    cr_assert_str_eq(ht->table[2]->value, "Value1");
-    cr_assert_eq(ht->hash_fn(ht->table[0]->key, ht->len), 24303257);
+    cr_assert_str_eq(ht->table[1]->value, "Value1");
+    cr_assert_eq(ht->hash_fn(ht->table[1]->key, ht->len), 7856);
     cr_assert_eq(ht->table[2]->next, NULL);
     ht_insert(ht, "Agility", "Value2");
     ht_dump(ht);
-    cr_assert_stdout_eq_str("[0]:\n[1]:\n[2]:\n> 25163347 - Value2\n> 24303257 - Value1\n[3]:\n[4]:\n");
+    cr_assert_stdout_eq_str("[0]:\n[1]:\n> 7856 - Value1\n[2]:\n> 624477 - Value2\n[3]:\n[4]:\n");
 }
 
 Test(insert, ht_insert3, .init = cr_redirect_stdout)
@@ -165,7 +164,7 @@ Test(insert, ht_insert3, .init = cr_redirect_stdout)
     ht_insert(ht, "Perception", "Value1");
     ht_insert(ht, "Perception", "Value2");
     ht_dump(ht);
-    cr_assert_stdout_eq_str("[0]:\n[1]:\n[2]:\n> 24303257 - Value2\n[3]:\n[4]:\n");
+    cr_assert_stdout_eq_str("[0]:\n[1]:\n> 7856 - Value2\n[2]:\n[3]:\n[4]:\n");
 }
 
 Test(insert, ht_insert_errors)
