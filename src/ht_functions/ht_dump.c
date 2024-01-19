@@ -10,11 +10,12 @@
 #include "../../includes/hashtable.h"
 #include "../../includes/my.h"
 
-static void display_table_index(list_node *temp, __attribute__((unused))hashtable_t *ht)
+static void display_table_index(list_node *temp, hashtable_t *ht)
 {
     while (temp != NULL) {
         if (temp->key) {
-            mprintf("> %d - %s\n", ht->hash_fn(temp->key, ht->len), temp->value);
+            mprintf(
+                "> %d - %s\n", ht->hash_fn(temp->key, ht->len), temp->value);
         }
         temp = temp->next;
     }

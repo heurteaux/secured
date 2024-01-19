@@ -22,8 +22,7 @@ int main(void)
 {
     hashtable_t *ht = new_hashtable(test_hash, 5);
 
-    int caca = ht_insert(ht, "Key1", "Perception");
-    printf("%d\n", caca);
+    ht_insert(ht, "Key1", "Perception");
     ht_dump(ht);
     return 0;
 }
