@@ -15,7 +15,7 @@ char *ht_search(hashtable_t *ht, char *key)
     int index;
     list_node *temp;
 
-    if (!ht || !key)
+    if (!ht || !key || my_strlen(key) == 0)
         return NULL;
     hash_key = ht->hash_fn(key, ht->len);
     index = hash_key % ht->len;
