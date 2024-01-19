@@ -48,7 +48,7 @@ int ht_delete(hashtable_t *ht, char *key)
     int index;
     list_node *temp;
 
-    if (!ht || !key || key[0] == '\0')
+    if (!ht || !key || my_strlen(key) == 0)
         return 84;
     key_hash = ht->hash_fn(key, ht->len);
     index = key_hash % ht->len;

@@ -25,6 +25,8 @@ void ht_dump(hashtable_t *ht)
 {
     list_node *temp;
 
+    if (!ht)
+        return;
     for (int i = 0; i < ht->len; i++) {
         mprintf("[%i]:\n", i);
         temp = ht->table[i];
