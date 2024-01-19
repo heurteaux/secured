@@ -16,7 +16,7 @@ void list_append(list_node *head, list_node *new_entry)
 
     if (head->value == NULL) {
         head->value = new_entry->value;
-        head->hash_id = new_entry->hash_id;
+        head->key = new_entry->key;
         free(new_entry);
         return;
     }

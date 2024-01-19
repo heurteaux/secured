@@ -74,42 +74,6 @@ Test(HashTableTest, index_collision)
     delete_hashtable(ht);
 }*/
 
-Test(hash, test_hash1)
-{
-    char *key = "Perception";
-    int keyint = hash(key, 5);
-
-    cr_assert_eq(keyint % 5, 2);
-    cr_assert_eq(keyint, 24303257);
-}
-
-Test(hash, test_hash2)
-{
-    char *key = "Agility";
-    int keyint = hash(key, 5);
-
-    cr_assert_eq(keyint % 5, 2);
-    cr_assert_eq(keyint, 25163347);
-}
-
-Test(hash, test_hash3)
-{
-    char *key = "Key1";
-    int keyint = hash(key, 5);
-
-    cr_assert_eq(keyint % 5, 0);
-    cr_assert_eq(keyint, 58582440);
-}
-
-Test(hash, test_hash4)
-{
-    char *key = "peyAZpRTm";
-    int keyint = hash(key, 5);
-
-    cr_assert_eq(keyint % 5, 1);
-    cr_assert_eq(keyint, 86064051);
-}
-
 Test(hash, my_compute_power_rec1)
 {
     int nb = 2;
@@ -125,11 +89,11 @@ Test(hashtable, new_hashtable1)
 
     cr_assert_eq(ht->len, 5);
     cr_assert_eq(ht->hash_fn, hash);
-    cr_assert_eq(ht->table[0], NULL);
-    cr_assert_eq(ht->table[1], NULL);
-    cr_assert_eq(ht->table[2], NULL);
-    cr_assert_eq(ht->table[3], NULL);
-    cr_assert_eq(ht->table[4], NULL);
+    cr_assert_eq(ht->table[0]->key, NULL);
+    cr_assert_eq(ht->table[1]->key, NULL);
+    cr_assert_eq(ht->table[2]->key, NULL);
+    cr_assert_eq(ht->table[3]->key, NULL);
+    cr_assert_eq(ht->table[4]->key, NULL);
 }
 
 Test(hashtable, new_hashtable2)
@@ -177,7 +141,7 @@ Test(insert, ht_insert1)
 
     ht_insert(ht, "Key1", "Perception");
     cr_assert_str_eq(ht->table[0]->value, "Perception");
-    cr_assert_eq(ht->table[0]->hash_id, 58582440);
+    cr_assert_eq(ht->hash_fn(ht->table[0]->key, ht->len), 58582440);
     cr_assert_eq(ht->table[0]->next, NULL);
 }
 
@@ -187,7 +151,7 @@ Test(insert, ht_insert2, .init = cr_redirect_stdout)
 
     ht_insert(ht, "Perception", "Value1");
     cr_assert_str_eq(ht->table[2]->value, "Value1");
-    cr_assert_eq(ht->table[2]->hash_id, 24303257);
+    cr_assert_eq(ht->hash_fn(ht->table[0]->key, ht->len), 24303257);
     cr_assert_eq(ht->table[2]->next, NULL);
     ht_insert(ht, "Agility", "Value2");
     ht_dump(ht);
@@ -255,7 +219,7 @@ Test(dump, ht_dump1, .init = cr_redirect_stdout)
 
 Test(dump, ht_dump2, .init = cr_redirect_stdout)
 {
-    hashtable_t *ht = new_hashtable(hash, 5);
+    hashtable_t *ht = new_hashtable(test_hash, 5);
 
     ht_insert(ht, "Key1", "Perception");
     ht_dump(ht);

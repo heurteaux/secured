@@ -14,7 +14,6 @@
 static void delete_head(hashtable_t *ht, int index, list_node *temp)
 {
     if (!ht->table[index]->next) {
-        ht->table[index]->hash_id = -1;
         ht->table[index]->value = NULL;
         ht->table[index]->next = NULL;
         return;

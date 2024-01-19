@@ -9,6 +9,7 @@
 #include "../../includes/my.h"
 #include "../../includes/hashtable.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
@@ -23,10 +24,9 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     hash_key = ht->hash_fn(key, ht->len);
     index = hash_key % ht->len;
     new_entry = malloc(sizeof(list_node));
-    if (index == -1 || new_entry == NULL)
+    if (hash_key == -1 || new_entry == NULL)
         return 84;
     new_entry->value = value;
-    new_entry->hash_id = hash_key;
     new_entry->key = key;
     new_entry->next = NULL;
     list_append(ht->table[index], new_entry);
