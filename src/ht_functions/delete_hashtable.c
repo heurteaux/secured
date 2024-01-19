@@ -11,6 +11,8 @@
 
 void delete_hashtable(hashtable_t *ht)
 {
+    if (!ht)
+        return;
     for (int i = 0; i < ht->len; i++)
         wipe_list(ht->table[i]);
     free(ht->table);

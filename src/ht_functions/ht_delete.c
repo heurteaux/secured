@@ -30,19 +30,8 @@ static void delete_element(list_node *temp)
     free(to_delete);
 }
 
-int ht_delete(hashtable_t *ht, char *key)
+static int delete_in_linked_list(list_node *temp, char *key)
 {
-    int key_hash = ht->hash_fn(key, ht->len);
-    int index = key_hash % ht->len;
-    list_node *temp;
-
-    if (key_hash == -1)
-        return -1;
-    temp = ht->table[index];
-    if (temp->key && my_strcmp(temp->key, key) == 0) {
-        delete_head(ht, index, temp);
-        return 0;
-    }
     while (temp->next != NULL) {
         if (temp->next->key && my_strcmp(temp->next->key, key) == 0) {
             delete_element(temp);
@@ -50,5 +39,25 @@ int ht_delete(hashtable_t *ht, char *key)
         }
         temp = temp->next;
     }
-    return -1;
+    return 1;
+}
+
+int ht_delete(hashtable_t *ht, char *key)
+{
+    int key_hash;
+    int index;
+    list_node *temp;
+
+    if (!ht || !key || key[0] == '\0')
+        return 84;
+    key_hash = ht->hash_fn(key, ht->len);
+    index = key_hash % ht->len;
+    temp = ht->table[index];
+    if (temp->key && my_strcmp(temp->key, key) == 0) {
+        delete_head(ht, index, temp);
+        return 0;
+    }
+    if (delete_in_linked_list(temp, key) == 0)
+        return 0;
+    return 84;
 }

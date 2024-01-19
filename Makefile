@@ -28,6 +28,6 @@ fclean: clean
 
 re: fclean all
 
-tests_run: all
+tests_run: re
 	$(CC) -o unit_tests ./tests/*.c $(NAME) -lcriterion --coverage
 	./unit_tests

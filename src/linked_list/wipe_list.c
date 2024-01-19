@@ -13,6 +13,8 @@ void wipe_list(list_node *head)
 {
     list_node *temp = head;
 
+    if (!head)
+        return;
     while (temp != NULL) {
         head = temp->next;
         free(temp);

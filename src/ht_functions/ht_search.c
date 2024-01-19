@@ -11,10 +11,15 @@
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    int hash_key = ht->hash_fn(key, ht->len);
-    int index = hash_key % ht->len;
-    list_node *temp = ht->table[index];
+    int hash_key;
+    int index;
+    list_node *temp;
 
+    if (!ht || !key)
+        return NULL;
+    hash_key = ht->hash_fn(key, ht->len);
+    index = hash_key % ht->len;
+    temp = ht->table[index];
     if (index == -1)
         return NULL;
     while (temp != NULL) {
