@@ -20,8 +20,10 @@ int test_hash(char *key, __attribute__((unused))int len)
 
 int main(void)
 {
-    hashtable_t *ht = new_hashtable(&test_hash, 5);
+    hashtable_t *ht = new_hashtable(hash, 5);
 
-    delete_hashtable(ht);
+    ht_insert(ht, "Perception", "Value1");
+    ht_insert(ht, "Perception", "Value2");
+    ht_dump(ht);
     return 0;
 }
